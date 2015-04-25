@@ -1,3 +1,37 @@
+# Note on demo screenshots
+
+To produce all of the screenshots for the different geometries, I have used this code.
+
+```Swift
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var sceneView: SCNView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let scene = SCNScene()
+        
+        let box = SCNBox(width: 10, height: 10, length: 10, chamferRadius: 0)
+        
+        let geometry = box // This is where you would change to different geometries
+        let geometryNode = SCNNode(geometry: geometry)
+        geometryNode.rotation = SCNVector4(x: Float(M_PI / 4), y: 1, z: 0, w: 1.0)
+        scene.rootNode.addChildNode(geometryNode)
+        
+        // Camera
+        let cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        cameraNode.position = SCNVector3Make(0, 0, 30)
+        scene.rootNode.addChildNode(cameraNode)
+        
+        sceneView.scene = scene
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.allowsCameraControl = true
+    }
+}
+```
+
 # SCNGeometry
 
 ## Summary
@@ -40,6 +74,8 @@ Since it has 6 faces, you can define 6 materials.
 ```Swift
 let box = SCNBox(width: 10, height: 10, length: 10, chamferRadius: 0)
 ```
+
+![](shape-screens/box.png)
 
 # SCNCapsule
 
