@@ -9,8 +9,6 @@ Some additional static functions it has (when compared to SKAction):
 
     Neat way to use JS to create a custom action. Couldn't find an example xD
     
-    
-    
 ## 3 [SCNAnimationEventBlock](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNAnimationEvent_Class/index.html#//apple_ref/c/tdef/SCNAnimationEventBlock)
 Data type that's used by the [SCNAnimationEvent](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNAnimationEvent_Class/index.html). A block that's invoked when the animation event triggers.
 
@@ -40,12 +38,24 @@ let event = SCNAnimationEvent(keyTime: 0.5) { (animation, myNode, NO) -> Void in
 animation?.animationEvents.append(event)
 ```
 
+## 4. [SCNConstraint](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNConstraint_Class/index.html)
+SKConstraint equivalent. A single important note:<br>
+*To use physics with a node also affected by constraints, the node’s physicsBody object must be a kinematic physics body.*
 
+## 5. [SCNIKConstraint](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNIKConstraint_Class/index.html#//apple_ref/occ/cl/SCNIKConstraint)
 
+Inverse Kinemtic (IK) Constraints apply on a node chain. The node chain is specified as a base node and a root node, and the 2 nodes must be in the same hierarchy.
 
+There a few steps to make this happen:
 
-1. [SCNConstraint](../SCNConstraint_Class/index.html#//apple_ref/occ/cl/SCNConstraint) A constraint automatically adjusts the transformation (position, rotation, and scale) of a node based on rules you define.
-1. [SCNIKConstraint](../SCNIKConstraint_Class/index.html#//apple_ref/occ/cl/SCNIKConstraint) An <code class="code-voice">SCNIKConstraint</code> object automatically adjusts the orientations of one or more nodes in a specified hierarchy, applying inverse kinematics to make the chain reach toward a target point.
+1. Build a hierarchy of nodes whose *position* and *pivot*  describe joints between them. These properties are needed to make sure that when rotating a node, it will keep bend at an appropriate point.
+2. Create an SCNIKConstraint with the root node being the top node whose orientation will be adjusted by the constraint.
+3. `Apply the IK constraint to the end effector node of the chain. In the robot arm example, the end effector is the hand or tool at the end of the arm.`
+4. Optionally limit the rotation for a specific joint (node)
+5. `To set the constrained nodes in motion, provide a target position for the constraint with its targetPosition property. You can animate a change to this property.`
+
+[![IKConstraint example](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNIKConstraint_Class/Art/ikconstraint_2x.png)
+
 1. [SCNLookAtConstraint](../SCNLookAtConstraint_Class/index.html#//apple_ref/occ/cl/SCNLookAtConstraint) An <code class="code-voice">SCNLookAtConstraint</code> object automatically adjusts a node’s orientation so that it always points toward another node.
 1. [SCNTransformConstraint](../SCNTransformConstraint_Class/index.html#//apple_ref/occ/cl/SCNTransformConstraint) An <code class="code-voice">SCNTransformConstraint</code> object runs a block that you specify to compute a new transformation (position, rotation, and scale) for each node affected by the constraint.
 1. [SCNHitTestResult](../SCNHitTestResult_Class/index.html#//apple_ref/occ/cl/SCNHitTestResult) Hit-testing is the process of finding elements of a scene located at a specified point, or along a specified line segment (or ray).
