@@ -113,3 +113,22 @@ forceField.categoryBitMask = someCategory
 someNode.physicsField = forceField //attach field to the node
 
 ```
+# SCNPhysicsContact
+An SCNPhysicsContact object describes a contact between two physics bodies. These objects are created automatically.
+
+#### Properties
+```Swift
+var nodeA: SCNNode { get }
+var nodeB: SCNNode { get }
+var contactPoint: SCNVector3 { get }
+...
+```
+
+#### Examples
+```Swift
+physicsWorld.contactDelegate = classThatImplemetsSCNPhysicsContactDelegate //assign class that implements SCNPhysicsContactDelegate protocol to the physics world
+
+//don't forget to set categoryBitMasks and collisionBitMasks
+someBody.categoryBitMask = someCategory
+someBody.collisionBitMask = someAnotherCategory
+```
