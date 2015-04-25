@@ -29,32 +29,6 @@ func contactTestWithBody(_ body: SCNPhysicsBody!,
                  options options: [NSObject : AnyObject]!) -> [AnyObject]!
 
 ```
-
-# SCNPhysicsBehavior
-An SCNPhysicsBehavior defines high-level behavior (e.g. vehicle) for one or more objects.
-
-#### Behavior classes
-SCNPhysicsHingeJoint<br>
-SCNPhysicsBallSocketJoint<br>
-SCNPhysicsSliderJoint<br>
-SCNPhysicsVehicle<br>
-
-#### Examples
-##### How to use
-```Swift
-var someScene = SCNScene()
-var physicsWorld = someScene.physicsWorld
-
-var someNode = SCNNode() //Node that you want to add behavior to
-
-var someBody = SCNPhysicsBody() //Create physics body
-someBody.friction = 0.5 //configure its properties
-someNode.physicsBody = someBody //attach body to the node
-
-var sliderBehavior: SCNPhysicsSliderJoint! = SCNPhysicsSliderJoint() //create behavior
-
-physicsWorld.addBehavior(sliderBehavior) //add behaviour to physics world
-```
 # SCNPhysicsBody
 An SCNPhysicsBody is used to add physics simulation to a node.
 
@@ -95,4 +69,30 @@ var someBody = SCNPhysicsBody(type: SCNPhysicsBodyType.Static, shape: nil) //Cre
 someBody.friction = 0.5 //configure its properties
 
 someNode.physicsBody = someBody //attach body to the node
+```
+
+# SCNPhysicsBehavior
+An SCNPhysicsBehavior defines high-level behavior (e.g. vehicle) for one or more objects.
+
+#### Behavior classes
+SCNPhysicsHingeJoint<br>
+SCNPhysicsBallSocketJoint<br>
+SCNPhysicsSliderJoint<br>
+SCNPhysicsVehicle<br>
+
+#### Examples
+##### How to use
+```Swift
+var someScene = SCNScene()
+var physicsWorld = someScene.physicsWorld
+
+var someNode = SCNNode() //Node that you want to add behavior to
+
+var someBody = SCNPhysicsBody() //Create physics body
+someBody.friction = 0.5 //configure its properties
+someNode.physicsBody = someBody //attach body to the node
+
+var sliderBehavior: SCNPhysicsSliderJoint! = SCNPhysicsSliderJoint() //create behavior
+
+physicsWorld.addBehavior(sliderBehavior) //add behaviour to physics world
 ```
