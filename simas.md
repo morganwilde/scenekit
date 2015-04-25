@@ -150,10 +150,50 @@ The other available properties are:
 
 
 
+## 9. [SCNMorpher](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNMorpher_Class/index.html)
+
+Deforms the surface of a node’s geometry, smoothly transitioning between a base geometry and one or more target geometries.
+
+<p align="center"><img src="https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNMorpher_Class/Art/morpher_2x.png" alt="SCNMorpher example" width="400" height="98" /></p>
+
+```Swift
+// Create different shape geometries
+var sphereGeometry, cubeGeometry, torusGeometry : SCNGeometry?
+
+// Create a morpher with multiple geometry targets
+let morpher = SCNMorpher()
+morpher.targets?.append(cubeGeometry!)
+morpher.targets?.append(torusGeometry!)
+
+// Create a node which will be animated
+let myNode = SCNNode(geometry: sphereGeometry!)
+myNode.morpher = morpher
+
+// Use a transaction to animate the transitions
+SCNTransaction.begin()
+SCNTransaction.setAnimationDuration(3)
+// Animate to cube
+myNode.morpher?.setWeight(0.0, forTargetAtIndex: 0)
+SCNTransaction.setCompletionBlock { () -> Void in
+    // Done animating to cube
+    SCNTransaction.begin()
+    SCNTransaction.setAnimationDuration(3)
+    // Animate to torus
+    myNode.morpher?.setWeight(0.0, forTargetAtIndex: 1)
+    SCNTransaction.commit()
+}
+SCNTransaction.commit()
+```
+
+Weight property is generally from 0.0 to 1.0, and it tells to which target, the morpher should lean to.
+
+For example in the above example, setting 0.0 with target 1 would morph to a cube, while 1.0 with the same target would morph to a torus.
+
+Note that the base geometry and all target geometries must be **topologically identical** — that is, they must contain the same number and structural arrangement of vertices.
 
 
-## 9. [SCNLevelOfDetail](../SCNLevelOfDetail_Class/index.html#//apple_ref/occ/cl/SCNLevelOfDetail) Use <code class="code-voice">SCNLevelOfDetail</code> objects to enable automatic substitution of alternate levels of detail for a geometry.
-10. [SCNMorpher](../SCNMorpher_Class/index.html#//apple_ref/occ/cl/SCNMorpher) An <code class="code-voice">SCNMorpher</code> object deforms the surface of a node’s geometry, smoothly transitioning between a base geometry and one or more target geometries.
+## 10. [SCNLevelOfDetail](../SCNLevelOfDetail_Class/index.html#//apple_ref/occ/cl/SCNLevelOfDetail) Use <code class="code-voice">SCNLevelOfDetail</code> objects to enable automatic substitution of alternate levels of detail for a geometry.
+
 11. [SCNParticlePropertyController](../SCNParticlePropertyController_Class/index.html#//apple_ref/occ/cl/SCNParticlePropertyController) An <code class="code-voice">SCNParticlePropertyController</code> object uses Core Animation semantics to animate a property of the particles rendered by an <code class="code-voice">SCNParticleSystem</code> object.
 12. [SCNParticleSystem](../SCNParticleSystem_Class/index.html#//apple_ref/occ/cl/SCNParticleSystem) An <code class="code-voice">SCNParticleSystem</code> object automatically creates, animates, and renders a system of particles—small image sprites—according to a high-level simulation whose general behavior you specify.
 13. [SCNRenderer](../SCNRenderer_Class/index.html#//apple_ref/occ/cl/SCNRenderer) An <code class="code-voice">SCNRenderer</code> object renders a SceneKit scene into an arbitrary OpenGL context.
