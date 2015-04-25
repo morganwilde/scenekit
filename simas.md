@@ -9,7 +9,7 @@ Some additional static functions it has (when compared to SKAction):
 
     Neat way to use JS to create a custom action. Couldn't find an example xD
     
-## 3 [SCNAnimationEventBlock](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNAnimationEvent_Class/index.html#//apple_ref/c/tdef/SCNAnimationEventBlock)
+## 2. [SCNAnimationEventBlock](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNAnimationEvent_Class/index.html#//apple_ref/c/tdef/SCNAnimationEventBlock)
 Data type that's used by the [SCNAnimationEvent](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNAnimationEvent_Class/index.html). A block that's invoked when the animation event triggers.
 
 Signature: `typealias SCNAnimationEventBlock = (CAAnimation!, AnyObject!, Bool) -> Void`
@@ -162,6 +162,7 @@ var sphereGeometry, cubeGeometry, torusGeometry : SCNGeometry?
 
 // Create a morpher with multiple geometry targets
 let morpher = SCNMorpher()
+morpher.targets?.append(sphereGeometry!)
 morpher.targets?.append(cubeGeometry!)
 morpher.targets?.append(torusGeometry!)
 
@@ -173,13 +174,13 @@ myNode.morpher = morpher
 SCNTransaction.begin()
 SCNTransaction.setAnimationDuration(3)
 // Animate to cube
-myNode.morpher?.setWeight(0.0, forTargetAtIndex: 0)
+myNode.morpher?.setWeight(0.0, forTargetAtIndex: 1)
 SCNTransaction.setCompletionBlock { () -> Void in
     // Done animating to cube
     SCNTransaction.begin()
     SCNTransaction.setAnimationDuration(3)
     // Animate to torus
-    myNode.morpher?.setWeight(0.0, forTargetAtIndex: 1)
+    myNode.morpher?.setWeight(0.0, forTargetAtIndex: 2)
     SCNTransaction.commit()
 }
 SCNTransaction.commit()
