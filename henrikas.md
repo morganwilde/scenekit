@@ -12,8 +12,8 @@ unowned(unsafe) var contactDelegate: SKPhysicsContactDelegate //Called when two 
 #### Constants
 ```Swift
 let SCNPhysicsCollisionBitMaskKey: String //SCNPhysicsCollisionCategoryAll (tests all bodies) by default
-```
 ...
+```
 
 #### Methods
 ```Swift
@@ -54,4 +54,45 @@ someNode.physicsBody = someBody //attach body to the node
 var sliderBehavior: SCNPhysicsSliderJoint! = SCNPhysicsSliderJoint() //create behavior
 
 physicsWorld.addBehavior(sliderBehavior) //add behaviour to physics world
+```
+# SCNPhysicsBody
+An SCNPhysicsBody is used to add physics simulation to a node.
+
+#### Properties
+```Swift
+var mass: CGFloat
+var friction: CGFloat
+var restitution: CGFloat
+var categoryBitMask: Int
+var collisionBitMask: Int
+var isResting: Bool {get}
+...
+```
+
+#### Constants
+```Swift
+enum SCNPhysicsBodyType : Int {
+    case Static
+    case Dynamic
+    case Kinematic
+}
+...
+```
+
+#### Methods
+```Swift
+func applyForce(_ direction: SCNVector3,
+        impulse impulse: Bool)
+func clearAllForces()
+func clearAllForces()
+...
+```
+
+#### Examples
+##### How to use
+```Swift
+var someBody = SCNPhysicsBody(type: SCNPhysicsBodyType.Static, shape: nil) //Create physics body
+someBody.friction = 0.5 //configure its properties
+
+someNode.physicsBody = someBody //attach body to the node
 ```
