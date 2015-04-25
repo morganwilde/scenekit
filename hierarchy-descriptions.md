@@ -52,11 +52,15 @@ A new node object with geometry attached, or nil if initialization is not succes
 
 *(functions)*
 
-* presentationNode</br>
+* presentationNode
+
 ###### Return value
+
 A copy of the current presentation node object.
 **! Do not modify the properties of this object !**
+
 ###### Usability
+
 (for example) Use it for creating new animation starting at presentation nodes values.
 <br/>
 (something like that)
