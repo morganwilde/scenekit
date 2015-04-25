@@ -54,15 +54,73 @@ There a few steps to make this happen:
 4. Optionally limit the rotation for a specific joint (node)
 5. `To set the constrained nodes in motion, provide a target position for the constraint with its targetPosition property. You can animate a change to this property.`
 
-[![IKConstraint example](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNIKConstraint_Class/Art/ikconstraint_2x.png)
+<img src="https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNIKConstraint_Class/Art/ikconstraint_2x.png" alt="IKConstraint example" width="378" height="300"/>
 
-1. [SCNLookAtConstraint](../SCNLookAtConstraint_Class/index.html#//apple_ref/occ/cl/SCNLookAtConstraint) An <code class="code-voice">SCNLookAtConstraint</code> object automatically adjusts a node’s orientation so that it always points toward another node.
-1. [SCNTransformConstraint](../SCNTransformConstraint_Class/index.html#//apple_ref/occ/cl/SCNTransformConstraint) An <code class="code-voice">SCNTransformConstraint</code> object runs a block that you specify to compute a new transformation (position, rotation, and scale) for each node affected by the constraint.
-1. [SCNHitTestResult](../SCNHitTestResult_Class/index.html#//apple_ref/occ/cl/SCNHitTestResult) Hit-testing is the process of finding elements of a scene located at a specified point, or along a specified line segment (or ray).
-1. [SCNLevelOfDetail](../SCNLevelOfDetail_Class/index.html#//apple_ref/occ/cl/SCNLevelOfDetail) Use <code class="code-voice">SCNLevelOfDetail</code> objects to enable automatic substitution of alternate levels of detail for a geometry.
-1. [SCNMorpher](../SCNMorpher_Class/index.html#//apple_ref/occ/cl/SCNMorpher) An <code class="code-voice">SCNMorpher</code> object deforms the surface of a node’s geometry, smoothly transitioning between a base geometry and one or more target geometries.
-1. [SCNParticlePropertyController](../SCNParticlePropertyController_Class/index.html#//apple_ref/occ/cl/SCNParticlePropertyController) An <code class="code-voice">SCNParticlePropertyController</code> object uses Core Animation semantics to animate a property of the particles rendered by an <code class="code-voice">SCNParticleSystem</code> object.
-1. [SCNParticleSystem](../SCNParticleSystem_Class/index.html#//apple_ref/occ/cl/SCNParticleSystem) An <code class="code-voice">SCNParticleSystem</code> object automatically creates, animates, and renders a system of particles—small image sprites—according to a high-level simulation whose general behavior you specify.
-1. [SCNRenderer](../SCNRenderer_Class/index.html#//apple_ref/occ/cl/SCNRenderer) An <code class="code-voice">SCNRenderer</code> object renders a SceneKit scene into an arbitrary OpenGL context.
-1. [SCNTechnique](../SCNTechnique_Class/index.html#//apple_ref/occ/cl/SCNTechnique) An <code class="code-voice">SCNTechnique</code> object describes a rendering technique that uses one or more additional drawing passes, each of which uses a custom OpenGL shader program to augment or postprocess SceneKit’s rendering of the scene.
-1. [SCNTransaction](../SCNTransaction_Class/index.html#//apple_ref/occ/cl/SCNTransaction) The <code class="code-voice">SCNTransaction</code> class defines SceneKit’s mechanism for batching scene graph modifications into atomic updates.
+Example:
+
+```Swift
+var upperArm : SCNNode?
+var lowerArm : SCNNode?
+var hand : SCNNode?
+
+// Create a hierarchy
+upperArm?.addChildNode(lowerArm!)
+lowerArm?.addChildNode(hand!)
+
+// Position the parts
+lowerArm?.position = // Below upperArm
+lowerArm?.pivot    = // Transformation matrix ?
+
+hand?.position = // Below lowerArm
+hand?.pivot    = // Transformation matrix ?
+
+// Create constraint
+var ikConstraint = SCNIKConstraint.inverseKinematicsConstraintWithChainRootNode(upperArm!)
+// Set the maximum hand rotation angle
+ikConstraint.setMaxAllowedRotationAngle(120.0, forJoint: hand!)
+
+// Add the IKConstraint
+hand?.constraints?.append(ikConstraint)
+```
+
+
+## 5. [SCNLookAtConstraint](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNLookAtConstraint_Class/index.html) 
+
+Automatically adjusts a node’s orientation so that it always points toward another node. For example, you can use a look-at constraint to ensure that a camera or spotlight always follows the movement of a game character.
+
+A node points in the direction of the negative z-axis of its local coordinate system.
+
+When Scene Kit evaluates a look-at constraint, it updates the constrained node’s transform property so that the node’s negative z-axis points toward the constraint’s target node.
+
+## 6. [SCNTransformConstraint](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNTransformConstraint_Class/index.html)
+
+Runs a block that you specify to compute a new transformation (position, rotation, and scale) for each node affected by the constraint.
+
+## 7. [SCNTransaction](https://developer.apple.com/library/mac/documentation/SceneKit/Reference/SCNTransaction_Class/index.html)
+
+SCNTransaction executes animations or scene graph modifications.
+It's similar to SQL transactions because of the sequential and multi-action execution.
+
+Transaction example:
+```Swift
+SCNTransaction.begin()
+SCNTransaction.setAnimationDuration(2)
+
+textNode?.position = SCNVector3(x:0.0, y:-10.0, z:0.0)
+myNode?.opacity = 0.0
+heroNode?.opacity = 1.0
+heroCamera?.camera!.yFov = 20.0
+lightNode?.spotInnerAngle = 30.0
+
+SCNTransaction.commit()
+```
+
+------
+
+8. [SCNHitTestResult](../SCNHitTestResult_Class/index.html#//apple_ref/occ/cl/SCNHitTestResult) Hit-testing is the process of finding elements of a scene located at a specified point, or along a specified line segment (or ray).
+9. [SCNLevelOfDetail](../SCNLevelOfDetail_Class/index.html#//apple_ref/occ/cl/SCNLevelOfDetail) Use <code class="code-voice">SCNLevelOfDetail</code> objects to enable automatic substitution of alternate levels of detail for a geometry.
+10. [SCNMorpher](../SCNMorpher_Class/index.html#//apple_ref/occ/cl/SCNMorpher) An <code class="code-voice">SCNMorpher</code> object deforms the surface of a node’s geometry, smoothly transitioning between a base geometry and one or more target geometries.
+11. [SCNParticlePropertyController](../SCNParticlePropertyController_Class/index.html#//apple_ref/occ/cl/SCNParticlePropertyController) An <code class="code-voice">SCNParticlePropertyController</code> object uses Core Animation semantics to animate a property of the particles rendered by an <code class="code-voice">SCNParticleSystem</code> object.
+12. [SCNParticleSystem](../SCNParticleSystem_Class/index.html#//apple_ref/occ/cl/SCNParticleSystem) An <code class="code-voice">SCNParticleSystem</code> object automatically creates, animates, and renders a system of particles—small image sprites—according to a high-level simulation whose general behavior you specify.
+13. [SCNRenderer](../SCNRenderer_Class/index.html#//apple_ref/occ/cl/SCNRenderer) An <code class="code-voice">SCNRenderer</code> object renders a SceneKit scene into an arbitrary OpenGL context.
+14. [SCNTechnique](../SCNTechnique_Class/index.html#//apple_ref/occ/cl/SCNTechnique) An <code class="code-voice">SCNTechnique</code> object describes a rendering technique that uses one or more additional drawing passes, each of which uses a custom OpenGL shader program to augment or postprocess SceneKit’s rendering of the scene.
