@@ -4,6 +4,7 @@
 1. [SCNCone](../SCNCone_Class/index.html#//apple_ref/occ/cl/SCNCone) An <code class="code-voice">SCNCone</code> geometry models a right circular cone or frustum.
 1. [SCNCylinder](../SCNCylinder_Class/index.html#//apple_ref/occ/cl/SCNCylinder) An <code class="code-voice">SCNCylinder</code> geometry models a right circular cylinder.
 1. [SCNFloor](../SCNFloor_Class/index.html#//apple_ref/occ/cl/SCNFloor) An <code class="code-voice">SCNFloor</code> geometry models an infinite plane.
+
 1. [SCNPlane](../SCNPlane_Class/index.html#//apple_ref/occ/cl/SCNPlane) An <code class="code-voice">SCNPlane</code> geometry models a rectangular, one-sided plane of specified width and height.
 1. [SCNPyramid](../SCNPyramid_Class/index.html#//apple_ref/occ/cl/SCNPyramid) An <code class="code-voice">SCNPyramid</code> geometry models a right rectangular pyramid.
 1. [SCNShape](../SCNShape_Class/index.html#//apple_ref/occ/cl/SCNShape) An <code class="code-voice">SCNShape</code> object is geometry that creates its contents from a two-dimensional path, optionally extruded to create a three-dimensional object.
