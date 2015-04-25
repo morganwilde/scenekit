@@ -29,6 +29,13 @@ func contactTestWithBody(_ body: SCNPhysicsBody!,
                  options options: [NSObject : AnyObject]!) -> [AnyObject]!
 
 ```
+#### Examples
+```Swift
+var someScene = SCNScene()
+var physicsWorld = someScene.physicsWorld
+physicsWorld.gravity = -4
+```
+
 # SCNPhysicsBody
 An SCNPhysicsBody is used to add physics simulation to a node.
 
@@ -58,12 +65,10 @@ enum SCNPhysicsBodyType : Int {
 func applyForce(_ direction: SCNVector3,
         impulse impulse: Bool)
 func clearAllForces()
-func clearAllForces()
 ...
 ```
 
 #### Examples
-##### How to use
 ```Swift
 var someBody = SCNPhysicsBody(type: SCNPhysicsBodyType.Static, shape: nil) //create physics body
 someBody.friction = 0.5 //configure its properties
@@ -81,18 +86,16 @@ SCNPhysicsSliderJoint<br>
 SCNPhysicsVehicle<br>
 
 #### Examples
-##### How to use
 ```Swift
-var someScene = SCNScene()
-var physicsWorld = someScene.physicsWorld
+//create node(s) that you want to add behavior to
+var someNode = SCNNode()
 
-var someNode = SCNNode() //Node that you want to add behavior to
-
+//create and configure body(ies
 var someBody = SCNPhysicsBody() //Create physics body
 someBody.friction = 0.5 //configure its properties
 someNode.physicsBody = someBody //attach body to the node
 
-var sliderBehavior: SCNPhysicsSliderJoint! = SCNPhysicsSliderJoint() //create behavior
+var sliderBehavior: SCNPhysicsSliderJoint! = SCNPhysicsSliderJoint(body: someBody, axis: someAxis, anchor: someAnchor) //create behavior
 
 physicsWorld.addBehavior(sliderBehavior) //add behaviour to physics world
 ```
@@ -102,7 +105,6 @@ An SCNPhysicsField object applies forces (e.g. gravitation, electromagnetism) to
 SCNPhysicsField can affect both SCNPhysicsBody and SCNParticleSystem objects.
 
 #### Examples
-##### How to use
 ```Swift
 var forceField = SCNPhysicsField.springField //create field with desired effect
 forceField.strength = 9.6 //Configure its properties
