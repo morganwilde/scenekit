@@ -91,6 +91,8 @@ A circular cylinder with hemispheres at each end.
 let capsule = SCNCapsule(capRadius: 10, height: 30)
 ```
 
+![](shape-screens/capsule.png)
+
 # SCNCone
 
 ## Summary
@@ -105,6 +107,8 @@ A right circular cone.
 let cone = SCNCone(topRadius: 0, bottomRadius: 10, height: 20)
 ```
 
+![](shape-screens/cone.png)
+
 # SCNCylinder
 
 ## Summary
@@ -116,8 +120,10 @@ A circular cylinder
 ## Example
 
 ```Swift
-let cylinder = SCNCylinder(radius: 20, height: 20)
+let cylinder = SCNCylinder(radius: 10, height: 10)
 ```
+
+![](shape-screens/cylinder.png)
 
 # SCNFloor
 
@@ -133,6 +139,8 @@ Models an infinite plane, usually provides a background for a scene.
 let floor = SCNFloor()
 ```
 
+![](shape-screens/floor.png)
+
 # SCNPlane
 
 ## Summary
@@ -147,6 +155,8 @@ A one sided rectangular plane. Can have rounded corners.
 let plane = SCNPlane(width: 20, height: 20)
 ```
 
+![](shape-screens/plane.png)
+
 # SCNPyramid
 
 ## Summary
@@ -158,8 +168,10 @@ A right rectangular pyramid.
 ## Example
 
 ```Swift
-let pyramid = SCNPyramid(width: 20, height: 30, length: 20)
+let pyramid = SCNPyramid(width: 20, height: 10, length: 20)
 ```
+
+![](shape-screens/pyramid.png)
 
 # SCNShape
 
@@ -171,14 +183,16 @@ Creates a 3D shape from a 2D path. You can also extrude the path.
 
 ```Swift
 let shapePath = UIBezierPath()
-shapePath.moveToPoint(CGPoint(x: 0, y: 0))
+shapePath.moveToPoint(CGPoint(x: -10, y: -10))
 shapePath.addCurveToPoint(
-    CGPoint(x: 20, y: 20),
-    controlPoint1: CGPoint(x: 20, y: 0),
-    controlPoint2: CGPoint(x: 20, y: 10))
+    CGPoint(x: 10, y: 15),
+    controlPoint1: CGPoint(x: 10, y: 0),
+    controlPoint2: CGPoint(x: 10, y: 10))
 
 let shape = SCNShape(path: shapePath, extrusionDepth: 10)
 ```
+
+![](shape-screens/shape.png)
 
 # SCNSphere
 
@@ -191,8 +205,10 @@ Models a sphere.
 ## Example
 
 ```Swift
-let sphere = SCNSphere(radius: 20)
+let sphere = SCNSphere(radius: 10)
 ```
+
+![](shape-screens/sphere.png)
 
 # SCNText
 
@@ -208,6 +224,8 @@ Renders text. You can also extrude the new text shape to make an object with dep
 let text = SCNText(string: "Testing", extrusionDepth: 10)
 ```
 
+![](shape-screens/text.png)
+
 # SCNTorus
 
 ## Summary
@@ -219,8 +237,10 @@ Models a torus (a ring shape).
 ## Example
 
 ```Swift
-let torus = SCNTorus(ringRadius: 20, pipeRadius: 5)
+let torus = SCNTorus(ringRadius: 10, pipeRadius: 5)
 ```
+
+![](shape-screens/torus.png)
 
 # SCNTube
 
@@ -233,8 +253,10 @@ A tube (circular cylinder with a circular hole in the middle).
 ## Example
 
 ```Swift
-let tube = SCNTube(innerRadius: 5, outerRadius: 20, height: 20)
+let tube = SCNTube(innerRadius: 5, outerRadius: 10, height: 10)
 ```
+
+![](shape-screens/tube.png)
 
 # SCNGeometryElement
 
@@ -260,6 +282,8 @@ let geometryElement = SCNGeometryElement(
 let geometryFromElement = SCNGeometry(sources: [geometrySource], elements: [geometryElement])
 ```
 
+![](shape-screens/custom.png)
+
 # SCNGeometrySource
 
 ## Summary
@@ -280,3 +304,5 @@ let geometrySource = SCNGeometrySource(vertices: vertexArray, count: vertexArray
 let geometryElement = SCNGeometryElement()
 let geometryFromSource = SCNGeometry(sources: [geometrySource], elements: [geometryElement])
 ```
+
+![](shape-screens/custom.png)

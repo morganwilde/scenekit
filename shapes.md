@@ -11,6 +11,5 @@
 1. [SCNText](../SCNText_Class/index.html#//apple_ref/occ/cl/SCNText) An <code class="code-voice">SCNText</code> object is a geometry that creates its contents from a string of text, rendered in 2D and optionally extruded to create a three-dimensional object.
 1. [SCNTorus](../SCNTorus_Class/index.html#//apple_ref/occ/cl/SCNTorus) An <code class="code-voice">SCNTorus</code> geometry models a ring-shaped object.
 1. [SCNTube](../SCNTube_Class/index.html#//apple_ref/occ/cl/SCNTube) An <code class="code-voice">SCNTube</code> geometry models a tube or pipe—a right circular cylinder with a circular hole along its central axis.
-
 1. [SCNGeometryElement](../SCNGeometryElement_Class/index.html#//apple_ref/occ/cl/SCNGeometryElement) An <code class="code-voice">SCNGeometryElement</code> object describes how vertices are connected to form the surface of a three-dimensional object, or geometry.
 1. [SCNGeometrySource](../SCNGeometrySource_Class/index.html#//apple_ref/occ/cl/SCNGeometrySource) An <code class="code-voice">SCNGeometrySource</code> object specifies per-vertex data for the set of vertices forming the surface of a three-dimensional object, or geometry.
