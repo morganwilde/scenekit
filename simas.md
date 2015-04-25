@@ -54,9 +54,37 @@ There a few steps to make this happen:
 4. Optionally limit the rotation for a specific joint (node)
 5. `To set the constrained nodes in motion, provide a target position for the constraint with its targetPosition property. You can animate a change to this property.`
 
-[![IKConstraint example](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNIKConstraint_Class/Art/ikconstraint_2x.png)
+<img src="https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNIKConstraint_Class/Art/ikconstraint_2x.png" alt="IKConstraint example" width="378" height="300"/>
 
-1. [SCNLookAtConstraint](../SCNLookAtConstraint_Class/index.html#//apple_ref/occ/cl/SCNLookAtConstraint) An <code class="code-voice">SCNLookAtConstraint</code> object automatically adjusts a node’s orientation so that it always points toward another node.
+Example:
+
+```Swift
+var upperArm : SCNNode?
+var lowerArm : SCNNode?
+var hand : SCNNode?
+
+// Create a hierarchy
+upperArm?.addChildNode(lowerArm!)
+lowerArm?.addChildNode(hand!)
+
+// Position the parts
+lowerArm?.position = // Below upperArm
+lowerArm?.pivot    = // Transformation matrix ?
+
+hand?.position = // Below lowerArm
+hand?.pivot    = // Transformation matrix ?
+
+// Create constraint
+var ikConstraint = SCNIKConstraint.inverseKinematicsConstraintWithChainRootNode(upperArm!)
+// Set the maximum hand rotation angle
+ikConstraint.setMaxAllowedRotationAngle(120.0, forJoint: hand!)
+
+// Add the IKConstraint
+hand?.constraints?.append(ikConstraint)
+```
+
+
+## 5. [SCNLookAtConstraint](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNLookAtConstraint_Class/index.html) 
 1. [SCNTransformConstraint](../SCNTransformConstraint_Class/index.html#//apple_ref/occ/cl/SCNTransformConstraint) An <code class="code-voice">SCNTransformConstraint</code> object runs a block that you specify to compute a new transformation (position, rotation, and scale) for each node affected by the constraint.
 1. [SCNHitTestResult](../SCNHitTestResult_Class/index.html#//apple_ref/occ/cl/SCNHitTestResult) Hit-testing is the process of finding elements of a scene located at a specified point, or along a specified line segment (or ray).
 1. [SCNLevelOfDetail](../SCNLevelOfDetail_Class/index.html#//apple_ref/occ/cl/SCNLevelOfDetail) Use <code class="code-voice">SCNLevelOfDetail</code> objects to enable automatic substitution of alternate levels of detail for a geometry.
