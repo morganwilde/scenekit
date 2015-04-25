@@ -117,7 +117,7 @@ SCNTransaction.commit()
 
 ------
 
-1. [SCNHitTestResult](../SCNHitTestResult_Class/index.html#//apple_ref/occ/cl/SCNHitTestResult) Hit-testing is the process of finding elements of a scene located at a specified point, or along a specified line segment (or ray).
+8. [SCNHitTestResult](../SCNHitTestResult_Class/index.html#//apple_ref/occ/cl/SCNHitTestResult) Hit-testing is the process of finding elements of a scene located at a specified point, or along a specified line segment (or ray).
 1. [SCNLevelOfDetail](../SCNLevelOfDetail_Class/index.html#//apple_ref/occ/cl/SCNLevelOfDetail) Use <code class="code-voice">SCNLevelOfDetail</code> objects to enable automatic substitution of alternate levels of detail for a geometry.
 1. [SCNMorpher](../SCNMorpher_Class/index.html#//apple_ref/occ/cl/SCNMorpher) An <code class="code-voice">SCNMorpher</code> object deforms the surface of a node’s geometry, smoothly transitioning between a base geometry and one or more target geometries.
 1. [SCNParticlePropertyController](../SCNParticlePropertyController_Class/index.html#//apple_ref/occ/cl/SCNParticlePropertyController) An <code class="code-voice">SCNParticlePropertyController</code> object uses Core Animation semantics to animate a property of the particles rendered by an <code class="code-voice">SCNParticleSystem</code> object.
