@@ -185,7 +185,7 @@ For example in the above example, setting 0.0 with target 1 would morph to a cub
 
 Note that the base geometry and all target geometries must be **topologically identical** — that is, they must contain the same number and structural arrangement of vertices.
 
-## 10. [SCNLevelOfDetail](../SCNLevelOfDetail_Class/index.html#//apple_ref/occ/cl/SCNLevelOfDetail) 
+## 10. [SCNLevelOfDetail](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNLevelOfDetail_Class/index.html) 
 
 Enable automatic substitution of alternate levels of detail for a geometry.
 
