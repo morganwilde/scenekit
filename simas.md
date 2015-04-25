@@ -143,13 +143,6 @@ The other available properties are:
 | worldNormal      | The surface normal vector at the point of intersection, in the scene’s world coordinate system. (read-only) |
 | modelTransform   | The world transform matrix of the node containing the intersection. (read-only) |
 
-
-
-
-
-
-
-
 ## 9. [SCNMorpher](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNMorpher_Class/index.html)
 
 Deforms the surface of a node’s geometry, smoothly transitioning between a base geometry and one or more target geometries.
@@ -192,8 +185,29 @@ For example in the above example, setting 0.0 with target 1 would morph to a cub
 
 Note that the base geometry and all target geometries must be **topologically identical** — that is, they must contain the same number and structural arrangement of vertices.
 
+## 10. [SCNLevelOfDetail](../SCNLevelOfDetail_Class/index.html#//apple_ref/occ/cl/SCNLevelOfDetail) 
 
-## 10. [SCNLevelOfDetail](../SCNLevelOfDetail_Class/index.html#//apple_ref/occ/cl/SCNLevelOfDetail) Use <code class="code-voice">SCNLevelOfDetail</code> objects to enable automatic substitution of alternate levels of detail for a geometry.
+Enable automatic substitution of alternate levels of detail for a geometry.
+
+<p align="center"><img src="https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNLevelOfDetail_Class/Art/lod_2x.png" alt="SCNLevelOfDetail example" width="400" height="84"/></p>
+
+Example:
+```Swift
+// Geometries for different resolutions
+var lowResSphereGeo, midResSphereGeo, highResSphereGeo : SCNGeometry?
+var lowSphere, midSphere, highSphere : SCNLevelOfDetail
+
+lowSphere = SCNLevelOfDetail(geometry: lowResSphereGeo, screenSpaceRadius: 100)
+midSphere = SCNLevelOfDetail(geometry: midResSphereGeo, screenSpaceRadius: 200)
+highSphere = SCNLevelOfDetail(geometry: highResSphereGeo, screenSpaceRadius: 300)
+
+// Default geometry
+var sphereGeometry : SCNGeometry?
+sphereGeometry?.levelsOfDetail = [lowSphere, midSphere, highSphere]
+
+// Sphere node
+let sphere = SCNNode(geometry: sphereGeometry!)
+```
 
 11. [SCNParticlePropertyController](../SCNParticlePropertyController_Class/index.html#//apple_ref/occ/cl/SCNParticlePropertyController) An <code class="code-voice">SCNParticlePropertyController</code> object uses Core Animation semantics to animate a property of the particles rendered by an <code class="code-voice">SCNParticleSystem</code> object.
 12. [SCNParticleSystem](../SCNParticleSystem_Class/index.html#//apple_ref/occ/cl/SCNParticleSystem) An <code class="code-voice">SCNParticleSystem</code> object automatically creates, animates, and renders a system of particles—small image sprites—according to a high-level simulation whose general behavior you specify.
