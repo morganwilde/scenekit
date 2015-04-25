@@ -115,10 +115,44 @@ lightNode?.spotInnerAngle = 30.0
 SCNTransaction.commit()
 ```
 
-------
+## 8. [SCNHitTestResult](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNHitTestResult_Class/index.html)
 
-8. [SCNHitTestResult](../SCNHitTestResult_Class/index.html#//apple_ref/occ/cl/SCNHitTestResult) Hit-testing is the process of finding elements of a scene located at a specified point, or along a specified line segment (or ray).
-9. [SCNLevelOfDetail](../SCNLevelOfDetail_Class/index.html#//apple_ref/occ/cl/SCNLevelOfDetail) Use <code class="code-voice">SCNLevelOfDetail</code> objects to enable automatic substitution of alternate levels of detail for a geometry.
+Hit-testing is the process of finding elements of a scene located at a specified point, or along a specified line segment (or ray).
+
+Example:
+
+```Swift
+let view : SCNView?
+let results = view?.hitTest(CGPointMake(100, 100), options: nil)
+for result in results! {
+    if let result = result as? SCNHitTestResult {
+        println("Found a node: \(result.node)")
+    }
+}
+```
+
+The other available properties are:
+
+| Property         | Use                                                        |
+|------------------|------------------------------------------------------------|
+| geometryIndex    | The index of the geometry element whose surface the search ray intersects. (read-only) |
+| faceIndex        | The index of the primitive in the geomety element intersected by the search ray. (read-only) |
+| localCoordinates | The point of intersection between the geometry and the search ray, in the local coordinate system of the node containing the geometry. (read-only) |
+| worldCoordinates | The point of intersection between the geometry and the search ray, in the scene’s world coordinate system. (read-only) |
+| localNormal      | The surface normal vector at the point of intersection, in the local coordinate system of the node containing the geometry intersected by the search ray. (read-only) |
+| worldNormal      | The surface normal vector at the point of intersection, in the scene’s world coordinate system. (read-only) |
+| modelTransform   | The world transform matrix of the node containing the intersection. (read-only) |
+
+
+
+
+
+
+
+
+
+
+## 9. [SCNLevelOfDetail](../SCNLevelOfDetail_Class/index.html#//apple_ref/occ/cl/SCNLevelOfDetail) Use <code class="code-voice">SCNLevelOfDetail</code> objects to enable automatic substitution of alternate levels of detail for a geometry.
 10. [SCNMorpher](../SCNMorpher_Class/index.html#//apple_ref/occ/cl/SCNMorpher) An <code class="code-voice">SCNMorpher</code> object deforms the surface of a node’s geometry, smoothly transitioning between a base geometry and one or more target geometries.
 11. [SCNParticlePropertyController](../SCNParticlePropertyController_Class/index.html#//apple_ref/occ/cl/SCNParticlePropertyController) An <code class="code-voice">SCNParticlePropertyController</code> object uses Core Animation semantics to animate a property of the particles rendered by an <code class="code-voice">SCNParticleSystem</code> object.
 12. [SCNParticleSystem](../SCNParticleSystem_Class/index.html#//apple_ref/occ/cl/SCNParticleSystem) An <code class="code-voice">SCNParticleSystem</code> object automatically creates, animates, and renders a system of particles—small image sprites—according to a high-level simulation whose general behavior you specify.
