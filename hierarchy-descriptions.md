@@ -52,7 +52,7 @@ A new node object with geometry attached, or nil if initialization is not succes
 
 *(functions)*
 
-* presentationNode
+* presentationNode</br>
 ###### Return value
 A copy of the current presentation node object.
 **! Do not modify the properties of this object !**
