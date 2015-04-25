@@ -17,11 +17,11 @@ Data type that's used by the [SCNAnimationEvent](https://developer.apple.com/lib
 Signature: `typealias SCNAnimationEventBlock = (CAAnimation!, AnyObject!, Bool) -> Void`
 Where the parameters are:
 
-| animation       | The animation triggering the animation event.              |
+| Parameter       | Use                                                        |
 |-----------------|------------------------------------------------------------|
+| animation       | The animation triggering the animation event.              |
 | animatedObject  | The Scene Kit object affected by the animation.            |
 | playingBackward | YES if the animation is playing in reverse; otherwise, NO. |
-|                 |                                                            |
 
     
 ## 3. [SCNAnimationEvent](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNAnimationEvent_Class/index.html)
