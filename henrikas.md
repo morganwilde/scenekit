@@ -132,3 +132,27 @@ physicsWorld.contactDelegate = classThatImplemetsSCNPhysicsContactDelegate //ass
 someBody.categoryBitMask = someCategory
 someBody.collisionBitMask = someAnotherCategory
 ```
+# SCNPhysicsShape
+An SCNPhysicsShape object simulates volume associated with SCNPhysicsBody for use in collision detection.
+
+Physics shapes are immutable.
+
+#### Constants
+```Swift
+let SCNPhysicsShapeTypeKey: String
+let SCNPhysicsShapeKeepAsCompoundKey: String
+let SCNPhysicsShapeScaleKey: String
+...
+```
+
+#### Examples
+```Swift
+//Create shape
+var someShapeWithGeometry = SCNPhysicsShape(geometry: someGeometry, options: nil)
+var someShapeWithNode = SCNPhysicsShape(node: someNode, options: nil)
+
+//Combine shapes
+var combinedShape = SCNPhysicsShape(shapes: arrayOfShapes, transforms: arrayOfTransforms)
+
+someBody.physicsShape = someShapeWithGeometry
+```
