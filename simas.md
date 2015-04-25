@@ -1,5 +1,37 @@
-1. [SCNAction](../SCNAction_Class/index.html#//apple_ref/occ/cl/SCNAction) An <code class="code-voice">SCNAction</code> object is an action that is executed by a node (<code class="code-voice">SCNNode</code>).
-1. [SCNAnimationEvent](../SCNAnimationEvent_Class/index.html#//apple_ref/occ/cl/SCNAnimationEvent) You attach an <code class="code-voice">SCNAnimationEvent</code> object to an animation to execute a block at a specific time when the animation plays.
+## 1. [SCNAction](https://developer.apple.com/library/mac/documentation/SceneKit/Reference/SCNAction_Class/index.html#//apple_ref/occ/cl/SCNAction)
+Action that's executed on a node. Basically the same as SKAction.
+
+Some additional static functions it has (when compared to SKAction):
+- [rotateByX(_ x: CGFloat, y: CGFloat, z: CGFloat, duration: NSTimeInterval)](https://developer.apple.com/library/mac/documentation/SceneKit/Reference/SCNAction_Class/index.html#//apple_ref/occ/clm/SCNAction/rotateByX:y:z:duration:)
+
+    where x,y,z is the angle
+- [javaScriptActionWithScript(_ script: String, duration seconds: NSTimeInterval)](https://developer.apple.com/library/mac/documentation/SceneKit/Reference/SCNAction_Class/index.html#//apple_ref/occ/clm/SCNAction/javaScriptActionWithScript:duration:)
+
+    Neat way to use JS to create a custom action. Couldn't find an example xD
+    
+    
+    
+## 3 [SCNAnimationEventBlock](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNAnimationEvent_Class/index.html#//apple_ref/c/tdef/SCNAnimationEventBlock)
+Data type that's used by the [SCNAnimationEvent](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNAnimationEvent_Class/index.html). A block that's invoked when the animation event triggers.
+
+Signature: `typealias SCNAnimationEventBlock = (CAAnimation!, AnyObject!, Bool) -> Void`
+Where the parameters are:
+
+| Parameter       | Use                                                        |
+|-----------------|------------------------------------------------------------|
+| animation       | The animation triggering the animation event.              |
+| animatedObject  | The Scene Kit object affected by the animation.            |
+| playingBackward | YES if the animation is playing in reverse; otherwise, NO. |
+
+    
+## 3. [SCNAnimationEvent](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNAnimationEvent_Class/index.html)
+SCNAnimationEvent object is attached to an animation to execute a block at a specific time when the animation plays.
+
+
+
+
+
+
 1. [SCNConstraint](../SCNConstraint_Class/index.html#//apple_ref/occ/cl/SCNConstraint) A constraint automatically adjusts the transformation (position, rotation, and scale) of a node based on rules you define.
 1. [SCNIKConstraint](../SCNIKConstraint_Class/index.html#//apple_ref/occ/cl/SCNIKConstraint) An <code class="code-voice">SCNIKConstraint</code> object automatically adjusts the orientations of one or more nodes in a specified hierarchy, applying inverse kinematics to make the chain reach toward a target point.
 1. [SCNLookAtConstraint](../SCNLookAtConstraint_Class/index.html#//apple_ref/occ/cl/SCNLookAtConstraint) An <code class="code-voice">SCNLookAtConstraint</code> object automatically adjusts a node’s orientation so that it always points toward another node.
