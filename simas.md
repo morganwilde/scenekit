@@ -15,7 +15,6 @@ Some additional static functions it has (when compared to SKAction):
 Data type that's used by the [SCNAnimationEvent](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNAnimationEvent_Class/index.html). A block that's invoked when the animation event triggers.
 
 Signature: `typealias SCNAnimationEventBlock = (CAAnimation!, AnyObject!, Bool) -> Void`
-Where the parameters are:
 
 | Parameter       | Use                                                        |
 |-----------------|------------------------------------------------------------|
@@ -23,10 +22,23 @@ Where the parameters are:
 | animatedObject  | The Scene Kit object affected by the animation.            |
 | playingBackward | YES if the animation is playing in reverse; otherwise, NO. |
 
-    
 ## 3. [SCNAnimationEvent](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNAnimationEvent_Class/index.html)
-SCNAnimationEvent object is attached to an animation to execute a block at a specific time when the animation plays.
+SCNAnimationEvent object is attached to an animation to execute a [SCNAnimationEventBlock](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNAnimationEvent_Class/index.html#//apple_ref/c/tdef/SCNAnimationEventBlock) at a specific time when the animation plays.
 
+Here's an example:
+
+```Swift
+var animation : CAAnimation?
+var myNode : SCNNode?
+
+// Event triggered at 50% of the given animation
+let event = SCNAnimationEvent(keyTime: 0.5) { (animation, myNode, NO) -> Void in
+    println("50% reached!")
+}
+
+// Add event
+animation?.animationEvents.append(event)
+```
 
 
 
